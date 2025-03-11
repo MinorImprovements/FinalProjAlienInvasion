@@ -11,3 +11,4 @@ class Settings:
         self.screen_height = 800
         self.bg_color = (115,215,255)
         self.ship_image = 'images/ship.bmp'
+        self.ship_speed = 5

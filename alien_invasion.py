@@ -50,6 +50,9 @@ class Alieninvasion:
         elif event.key == pygame.K_LEFT:
              #move ship to left
             self.ship.moving_left = True
+        #check if Q is pressed
+        elif event.key == pygame.K_q:
+            sys.exit()
     
     def _check_keyup_events(self, event):
         #respond to keyreleases
@@ -57,8 +60,6 @@ class Alieninvasion:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT: 
             self.ship.moving_left = False
-
-
 
     #update images on the screen and flip to the new screen
     def _update_screen(self):

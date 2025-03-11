@@ -14,8 +14,9 @@ class Ship:
         #create an instance of the Settings class to modify settings
         self.settings = Settings()
 
-        #Load the ship image and get its rect
-        self.image = pygame.image.load(self.settings.ship_image)
+        #Load the ship image, make the background transparent and get its rect
+        self.image = pygame.image.load(self.settings.ship_image).convert()
+        self.image.set_colorkey((230,230,230))
         self.rect = self.image.get_rect()
 
         #start eache new ship at the bottome center of the screen.

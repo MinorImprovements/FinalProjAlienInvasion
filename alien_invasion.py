@@ -56,10 +56,10 @@ class Alieninvasion:
 
     def _check_keydown_events(self, event):
         #respond to keypresses
-        if event.key == pygame.K_RIGHT:
+        if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
             #move the ship to the right.
             self.ship.moving_right = True
-        elif event.key == pygame.K_LEFT:
+        elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
              #move ship to left
             self.ship.moving_left = True
         #check if Q is pressed
@@ -70,9 +70,9 @@ class Alieninvasion:
     
     def _check_keyup_events(self, event):
         #respond to keyreleases
-        if event.key == pygame.K_RIGHT:
+        if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
             self.ship.moving_right = False
-        elif event.key == pygame.K_LEFT: 
+        elif event.key == pygame.K_LEFT or event.key == pygame.K_a: 
             self.ship.moving_left = False
 
     #create a new bullet and add it to the bullets group
@@ -124,8 +124,15 @@ class Alieninvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+
+        self._check_bullet_alien_collisions()
+    
+    def _check_bullet_alien_collisions(self):
         #check for any bullets that have hit aliens, if so, get rid of bullet and alien
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        if not self.aliens:
+            self.bullets.empty()
+            self._create_fleet()
 
     #update the positions of all aliens in the fleet
     def _update_aliens(self):

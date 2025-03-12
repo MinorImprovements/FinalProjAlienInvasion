@@ -16,6 +16,7 @@ class Ship:
 
         #Load the ship image, make the background transparent and get its rect
         self.image = pygame.image.load(self.settings.ship_image).convert()
+        #change the background of the image with the below RGB value to the same color as screen background
         self.image.set_colorkey((230,230,230))
         self.rect = self.image.get_rect()
 

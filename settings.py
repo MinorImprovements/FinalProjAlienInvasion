@@ -38,6 +38,7 @@ class Settings:
     #resetting speeds on game reset
     def initialize_dynamic_settings(self):
         self.alien_speed = 1.0
+        self.alien_points = 50
         
     #increase speed settings
     def increase_speed(self):

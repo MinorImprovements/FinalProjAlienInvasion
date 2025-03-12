@@ -40,13 +40,8 @@ class Alieninvasion:
         while True:
             self._check_events()
             self.ship.update()
-            self.bullets.update()
-
-            #get rid of bullets that have disappeared
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
-
+            self._update_bullets()
+            self._update_aliens()
             self._update_screen()
             
     def _check_events(self):
@@ -102,7 +97,6 @@ class Alieninvasion:
             current_y += 2 * alien_height
         self.aliens.add(alien)
 
-        
 
     #create alien and place it in row
     def _create_alien(self, x_position, y_posistion):
@@ -111,6 +105,30 @@ class Alieninvasion:
         new_alien.rect.x = x_position
         new_alien.rect.y = y_posistion
         self.aliens.add(new_alien)
+    
+    #Dropping fleet and changing directions
+    def _check_fleet_edges(self):
+        #respond appropriately if any aliens have reached an edge
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
+    def _change_fleet_direction(self):
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
+
+    #create and destroy bullets
+    def _update_bullets(self):
+        self.bullets.update()
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+
+    #update the positions of all aliens in the fleet
+    def _update_aliens(self):
+        self._check_fleet_edges()
+        self.aliens.update()
 
 
     #update images on the screen and flip to the new screen

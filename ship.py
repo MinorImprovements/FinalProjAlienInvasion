@@ -11,7 +11,7 @@ class Ship:
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
 
-        #create an instance of the Settings class to modify settings
+        #using instance of the Settings class from alien_invasion.py to modify settings
         self.settings = ai_game.settings
 
         #Load the ship image, make the background transparent and get its rect

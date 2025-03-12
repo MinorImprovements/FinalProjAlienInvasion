@@ -2,8 +2,10 @@
 #This file contains the logic for displaying screen, game staying on and getting some user inputs
 
 import sys
+from time import sleep
 import pygame
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -24,6 +26,9 @@ class Alieninvasion:
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
 
+        #create an instance to store game statistics
+        self.stats = GameStats(self)
+
         #create an inastance of the Ship class
         self.ship = Ship(self)
 
@@ -33,15 +38,19 @@ class Alieninvasion:
         #create an instance of the group of aliens
         self.aliens = pygame.sprite.Group()
 
+        #start Alien Invasion in an active state
+        self.game_active = True
+
         self._create_fleet()
 
     def run_game(self):
         #Start the main loop for the game
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
+            if self.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
             self._update_screen()
             
     def _check_events(self):
@@ -138,6 +147,33 @@ class Alieninvasion:
     def _update_aliens(self):
         self._check_fleet_edges()
         self.aliens.update()
+        #look for alien-ship collisions
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            self._ship_hit()
+        self._check_aliens_bottom()
+
+    #respnd to the ship being hit by an alien
+    def _ship_hit(self):
+        if self.stats.ships_left > 0:
+            #decrement ships left
+            self.stats.ships_left -= 1
+            #remove any remaining bullets and anliens
+            self.bullets.empty()
+            self.aliens.empty()
+            #create new fleet and center ship
+            self._create_fleet()
+            self.ship.center_ship()
+            #pause
+            sleep(0.5)
+        else:
+            self.game_active = False
+
+    #check if aliens have reached the bottom of the screen
+    def _check_aliens_bottom(self):
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= self.settings.screen_height:
+                self._ship_hit()
+                break
 
 
     #update images on the screen and flip to the new screen

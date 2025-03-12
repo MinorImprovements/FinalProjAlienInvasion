@@ -32,6 +32,8 @@ class Settings:
 
         #how quickly game speeds up
         self.speedup_scale = 1.1
+        #how points scale up as levels increase
+        self.score_scale = 1.5
 
         self.initialize_dynamic_settings()
 
@@ -43,3 +45,4 @@ class Settings:
     #increase speed settings
     def increase_speed(self):
         self.alien_speed *= self.speedup_scale
+        self.alien_points = int(self.score_scale * self.alien_points)

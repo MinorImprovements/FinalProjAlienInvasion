@@ -13,11 +13,11 @@ class Settings:
 
         #ship settings
         self.ship_image = 'images/ship.bmp'
-        self.ship_speed = 5
+        self.ship_speed = 7
         self.ship_limit = 3
 
         #Bullet settings
-        self.bullet_speed = 3.0
+        self.bullet_speed = 7.0
         self.bullet_width = 3.5
         self.bullet_height = 20
         self.bullet_color = (60, 60, 60)
@@ -39,7 +39,7 @@ class Settings:
 
     #resetting speeds on game reset
     def initialize_dynamic_settings(self):
-        self.alien_speed = 1.0
+        self.alien_speed = 1.5
         self.alien_points = 50
         
     #increase speed settings

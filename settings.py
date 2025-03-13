@@ -18,9 +18,7 @@ class Settings:
 
         #Bullet settings
         self.bullet_speed = 7.0
-        self.bullet_width = 3.5
-        self.bullet_height = 20
-        self.bullet_color = (60, 60, 60)
+        self.bullet_image = 'images/missile.bmp'
 
         #alien settings
         self.alien_image = 'images/alien.bmp'
@@ -39,7 +37,7 @@ class Settings:
 
     #resetting speeds on game reset
     def initialize_dynamic_settings(self):
-        self.alien_speed = 1.5
+        self.alien_speed = 50.5
         self.alien_points = 50
         
     #increase speed settings

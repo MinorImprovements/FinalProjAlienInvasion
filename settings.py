@@ -12,16 +12,16 @@ class Settings:
         self.bg_color = (115,215,255)
 
         #ship settings
-        self.ship_image = 'images/ship.bmp'
+        self.ship_image = 'images/boy.bmp'
         self.ship_speed = 7
         self.ship_limit = 3
 
         #Bullet settings
         self.bullet_speed = 7.0
-        self.bullet_image = 'images/missile.bmp'
+        self.bullet_image = 'images/hamburger.bmp'
 
         #alien settings
-        self.alien_image = 'images/alien.bmp'
+        self.alien_image = 'images/zombie.bmp'
         self.fleet_drop_speed = 7
         #fleet_direction of 1 reoresents right; -1 represents left
         self.fleet_direction = 1
@@ -37,7 +37,7 @@ class Settings:
 
     #resetting speeds on game reset
     def initialize_dynamic_settings(self):
-        self.alien_speed = 50.5
+        self.alien_speed = 2
         self.alien_points = 50
         
     #increase speed settings

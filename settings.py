@@ -12,16 +12,16 @@ class Settings:
         self.bg_color = (115,215,255)
 
         #ship settings
-        self.ship_image = 'images/boy.bmp'
+        self.ship_image = 'images/zookeeper.bmp'
         self.ship_speed = 7
         self.ship_limit = 3
 
         #Bullet settings
         self.bullet_speed = 7.0
-        self.bullet_image = 'images/hamburger.bmp'
+        self.bullet_image = 'images/bananas.bmp'
 
         #alien settings
-        self.alien_image = 'images/zombie.bmp'
+        self.alien_image = 'images/monkey.bmp'
         self.fleet_drop_speed = 7
         #fleet_direction of 1 reoresents right; -1 represents left
         self.fleet_direction = 1
